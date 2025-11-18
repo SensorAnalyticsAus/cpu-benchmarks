@@ -39,4 +39,4 @@ BCM2711,Debian GNU/Linux 11 (bullseye),bash 5.1.4,Pi4,"No seq, parallelised",cpu
 Conclusions,,,,,,,,,
 1,VMWare Fusion on M5 host is clearly the winner,,,,,,,,
 2,Bash and Zsh versions don't seem to make any appreciable difference,,,,,,,,
-3,Macbook Pro's seem to do much better by eliminating seq (an external command); conversely Pi5 is not as impacted.,,,,,,,,
+3,Macbook Pro's seem to do much better by eliminating seq (an external command); conversely Pi5 is not as impacted,,,,,,,,
