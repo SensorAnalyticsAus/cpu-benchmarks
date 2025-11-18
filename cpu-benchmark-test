@@ -1,0 +1,27 @@
+    #!/bin/bash
+
+    echo "Starting CPU-intensive task..."
+
+    START_TIME=$(date +%s)
+
+    # Perform a computationally intensive task, e.g., calculating prime numbers
+    # This example calculates prime numbers up to 100,000
+    for i in $(seq 2 100000); do
+        is_prime=true
+        for j in $(seq 2 $(echo "sqrt($i)" | bc -l)); do
+            if (( i % j == 0 )); then
+                is_prime=false
+                break
+            fi
+        done
+        # Optionally, you can add a counter for primes found if you want
+        # if $is_prime; then
+        #     # echo "$i is prime"
+        # fi
+    done
+
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+
+    echo "Iterations: $i"
+    echo "CPU-intensive task completed in $DURATION seconds."

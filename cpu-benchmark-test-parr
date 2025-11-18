@@ -1,0 +1,97 @@
+#!/bin/bash
+echo "Starting CPU-intensive task in parallel..."
+
+# --- Configuration ---
+NUM_CORES=10 # Set this to the number of logical cores you want to use
+UPPER_LIMIT=100000
+CHUNK_SIZE=$((UPPER_LIMIT / NUM_CORES))
+START_TIME=$(date +%s.%N)
+JOBS_PID=""
+
+# --- Define TEMP_FILES and the cleanup function ---
+TEMP_FILES="primes_chunk_*.txt"
+cleanup() {
+    # The 'jobs' command lists active jobs, and 'kill' terminates them cleanly.
+    jobs -p | xargs kill > /dev/null 2>&1
+    echo -e "\nCaught signal! Cleaning up temporary files and terminating background jobs..."
+    rm -f $TEMP_FILES
+    exit 1
+}
+
+trap cleanup INT TERM HUP
+
+# --- Prime Finding Function (The Worker) ---
+# This function calculates primes for a specific range [start, end]
+find_primes_in_range() {
+    local START=$1
+    local END=$2
+    local OUTPUT_FILE="primes_chunk_${START}_${END}.txt"
+    local count=0
+
+    # Ensure the range starts at 2 if the calculated START is less than 2
+    if (( START < 2 )); then
+        START=2
+    fi
+   
+    # We will simply count how many primes are found in this chunk
+    # The actual prime storage is omitted for brevity but would go here
+   
+    for (( i=START; i<=END; i++ )); do
+        is_prime=true
+       
+        # Calculate the limit for trial division (still needs bc)
+        LIMIT=$(echo "sqrt($i)" | bc)
+       
+        for (( j=2; j <= LIMIT; j++ )); do
+            if (( i % j == 0 )); then
+                is_prime=false
+                break
+            fi
+        done
+       
+        if $is_prime; then
+            count=$((count + 1))
+            # Optional: echo $i >> $OUTPUT_FILE
+        fi
+    done
+   
+    # Echo the result for this chunk to the main script
+    echo "Chunk $START to $END finished. Found $count primes."
+}
+
+# --- Main Parallel Execution ---
+current_start=2
+
+for (( c=1; c<=NUM_CORES; c++ )); do
+    current_end=$((current_start + CHUNK_SIZE - 1))
+   
+    # Ensure the last chunk goes right up to the UPPER_LIMIT
+    if (( c == NUM_CORES )); then
+        current_end=$UPPER_LIMIT
+    fi
+   
+    echo "Starting job $c: Range $current_start to $current_end"
+   
+    # 1. Run the function in the background with '&'
+    find_primes_in_range $current_start $current_end &
+   
+    # 2. Store the Process ID (PID) of the background job
+    JOBS_PID="$JOBS_PID $!"
+   
+    # Set the starting point for the next chunk
+    current_start=$((current_end + 1))
+done
+
+# 3. Wait for all background jobs to finish
+echo "Waiting for all $NUM_CORES jobs to complete..."
+wait $JOBS_PID
+
+# --- Final Calculation ---
+END_TIME=$(date +%s.%N)
+DURATION=$(awk "BEGIN { print $END_TIME - $START_TIME }")
+
+echo "---"
+echo "✅ Parallel task completed in $DURATION seconds."
+
+# Cleanup if output files were used
+# rm -f $TEMP_FILES
