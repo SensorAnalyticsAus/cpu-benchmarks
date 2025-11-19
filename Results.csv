@@ -22,6 +22,7 @@ BCM2712,Debian (ARM) GNU/Linux 12,zsh 5.9,Pi5,None,cpu-benchmark-test-zsh,238,3r
 ,,,,,,,,,
 I7 2-core 3.3 GHz,MacOS 11.2.3,zsh 5.8,mbp 2016,No seq,cpu-benchmark-test-zsh2,91,,500000,
 M1,??????,??????,??????,??????,??????,??????,,500000,
+M1,MacOS 15.7.3,zsh 5.9,mbp,No seq,cpu-benchmark-test-zsh2,39,,500000,
 M1 max,MacOS 26.1,zsh 5.9,mbp,No seq,cpu-benchmark-test-zsh2,41,3rd fastest,500000,
 M5,MacOS 26.1,zsh 5.9,mbp,No seq,cpu-benchmark-test-zsh2,24/50*,2nd fastest,500000,
 M5,Ubuntu 25.10 (ARM),zsh 5.9,VMWare Fusion 13.6.4,No seq,cpu-benchmark-test-zsh2,22,1st fastest,500000,
