@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "Starting CPU-intensive task..."
+START_TIME=$(date +%s)
+UPPER_LIMIT=100000
+# Outer loop: Uses fast, built-in Bash arithmetic
+for (( i=2; i<=UPPER_LIMIT; i++ )); do
+    is_prime=true
+    # Calculate the integer part of the square root (fixed bc command)
+    LIMIT=$(bc <<< "scale=0; sqrt(${i})")
+    # Inner loop: Uses fast, built-in Bash arithmetic for division checks
+    for (( j=2; j <= LIMIT; j++ )); do
+        # Built-in Bash modulo arithmetic
+        if (( i % j == 0 )); then
+            is_prime=false
+            break
+        fi
+    done
+done
+END_TIME=$(date +%s)
+DURATION=$((END_TIME - START_TIME))
+echo "CPU-intensive task completed in $DURATION seconds."
