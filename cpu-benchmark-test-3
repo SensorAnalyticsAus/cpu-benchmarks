@@ -6,6 +6,7 @@ UPPER_LIMIT=100000
 for (( i=2; i<=UPPER_LIMIT; i++ )); do
     is_prime=true
     # Calculate the integer part of the square root (fixed bc command)
+    # Actually less performant than a pipe (on Mac OS)
     LIMIT=$(bc <<< "scale=0; sqrt(${i})")
     # Inner loop: Uses fast, built-in Bash arithmetic for division checks
     for (( j=2; j <= LIMIT; j++ )); do
