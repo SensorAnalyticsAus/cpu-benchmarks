@@ -3,7 +3,7 @@ I7 2-core 3.3 GHz,MacOS 11.2.3,bash 3.2.57,mbp 2016,None,cpu-benchmark-test,507,
 M1,MacOS 26.1,bash 3.2.57,mbp,None,cpu-benchmark-test,511,,100000,
 M1,MacOS 15.7.3,bash 3.2.57,macmini,None,cpu-benchmark-test,395,,100000,
 M1,MacOS 15.7.3,bash 5.3.3,macmini,None,cpu-benchmark-test,428,,100000,
-M1 Max,MacOS 26.1,bash 3.2.57,mbp,None,511,,,100000,
+M1 Max,MacOS 26.1,bash 3.2.57,mbp,None,cpu-benchmark-test,511,,100000,
 M5,MacOS 26.1,bash 3.2.57,mbp,None,cpu-benchmark-test,291/575*,2nd fastest,100000,* on battery
 M5,Ubuntu 25.10 (ARM),bash 5.2.37,VMWare Fusion 13.6.4,None,cpu-benchmark-test,114,1st fastest,100000,
 i7-9700T,Ubuntu 24.04 (AMD),bash 5.2.21,Optiplex,None,cpu-benchmark-test,1191,,100000,
