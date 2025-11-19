@@ -1,37 +1,19 @@
 #!/bin/zsh
 echo "Starting CPU-intensive task..."
 START_TIME=$(date +%s)
-
-MAX_NUM=100000
-
-# Use a C-style for loop for the outer iteration (fastest numerical loop)
-# Iterate i from 2 up to the maximum number
-for ((i = 2; i <= MAX_NUM; i++)); do
+# Perform a computationally intensive task, e.g., calculating prime numbers
+# This example calculates prime numbers up to 100,000
+for i in $(seq 2 100000); do
     is_prime=true
-    
-    # Calculate the integer square root limit
-    # Zsh's arithmetic expansion automatically truncates the result of i**0.5
     limit=$((i**0.5))
-    
-    # Use a C-style for loop for the inner iteration (fastest)
-    # Iterate j from 2 up to the calculated limit
-    for ((j = 2; j <= limit; j++)); do
-        
-        # Check for divisibility using Zsh's shell arithmetic
+    for j in $(seq 2 $limit); do
         if (( i % j == 0 )); then
             is_prime=false
-            break # No need to check further divisors
+            break
         fi
     done
-    
-    # Optional: If you wanted to print the primes:
-    # if [[ "$is_prime" = true ]]; then
-    #     echo $i
-    # fi
 done
-
 END_TIME=$(date +%s)
 # Calculate duration using Zsh's shell arithmetic
 DURATION=$((END_TIME - START_TIME))
-
-echo "CPU-intensive task completed in $DURATION seconds."
+echo "CPU-intensive task completed in $DURATION seconds[zsh]."
