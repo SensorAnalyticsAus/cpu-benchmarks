@@ -13,7 +13,7 @@ BCM2711,Debian GNU/Linux 11 (bullseye),bash 5.1.4,Pi4,None,cpu-benchmark-test,14
 I7 2-core 3.3 GHz,MacOS 11.2.3,zsh 5.8,mbp 2016,None,cpu-benchmark-test-zsh,337,,100000,
 M1,MacOS 26.1,zsh 5.9,mbp,None,cpu-benchmark-test-zsh,378,,100000,
 M1,MacOS 15.7.3,zsh 5.9,macmini,None,cpu-benchmark-zsh,251,,100000,
-M1 Max,??????,??????,??????,??????,??????,??????,??????,100000,
+M1 Max,MacOS 26.1,zsh 5.9,mbp,None,cpu-benchmark-zsh,378,,100000,
 M5,MacOS 26.1,zsh 5.9,mbp,None,cpu-benchmark-test-zsh,162/326*,2nd fastest,100000,
 M5,Ubuntu 25.10 (ARM),zsh 5.9,VMWare Fusion 13.6.4,None,cpu-benchmark-test-zsh,71,1st fastest,100000,
 i7-9700T,Ubuntu 24.04 (AMD),zsh 5.9,Optiplex,None,cpu-benchmark-test-zsh,747,,100000,
